@@ -9,7 +9,7 @@
     "changeset": "changeset",
     "version": "changeset version",
     "publish": "changeset publish",
-     "publish-packages": "turbo run build lint && changeset version && changeset publish"
+    "publish-packages": "turbo run build lint && changeset version && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
