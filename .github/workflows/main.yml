@@ -1,19 +1,11 @@
-name: Publish
+name: CI
 on:
-  workflow_run:
-    workflows: [CI]
-    branches: [main]
-    types: [completed]
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
-
-permissions:
-  contents: write
-  pull-requests: write
+  push:
+    branches:
+      - "**"
 
 jobs:
-  publish:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,24 +14,5 @@ jobs:
           node-version: 18
           cache: npm
 
-      - run: npm install
-
-      - name: Authenticate with NPM
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-      - name: Debug NPM Config
-        run: |
-          npm config list
-          cat ~/.npmrc
-
-      - name: Create Release Pull Request or Publish
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: npm run publish-packages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm ci
+      - run: npm run lint && npm run build
