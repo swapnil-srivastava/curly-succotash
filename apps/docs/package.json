@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@swapnil-srivastava/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@swapnil-srivastava/typescript-config": "*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
