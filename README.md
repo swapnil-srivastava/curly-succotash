@@ -18,7 +18,7 @@ This Turborepo includes the following packages/apps:
 
 - `docs`: a [Next.js](https://nextjs.org/) app
 - `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@swapnil-srivastava/ui`: a stub React component library shared by both `web` and `docs` applications
 - `@swapnil-srivastava/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@swapnil-srivastava/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
