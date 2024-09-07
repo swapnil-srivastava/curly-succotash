@@ -95,6 +95,7 @@ Changing the version of the packages follow the steps mentioned below
     "access": "public"
    }
 4.  "private": false in package.json should be false
+5. changing the .changeset/config.json with "access": "public" as well.
 
 
 # increment the package 
