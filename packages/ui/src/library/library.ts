@@ -10,7 +10,7 @@ const setLocalStorage = (key: string, value:any) => {
     localStorage.setItem(key, JSON.stringify(value));
 }
   
-const BACKEND_URL = "https://spring-hackfestival2024-df62fb596841.herokuapp.com/";
+const BACKEND_URL = "https://spring-hackfestival2024-df62fb596841.herokuapp.com";
   
 export { BACKEND_URL, getLocalStorage, setLocalStorage };
   
