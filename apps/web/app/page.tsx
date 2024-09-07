@@ -46,8 +46,10 @@ export default function Home() {
             Read our docs
           </a>
         </div>
+
+        {/* Calling the Heroku API */}
         <Button appName="web" className={styles.secondary}>
-          Open alert
+          Call Hello World Heroku API
         </Button>
       </main>
       <footer className={styles.footer}>
