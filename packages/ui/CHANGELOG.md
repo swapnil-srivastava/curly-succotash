@@ -1,5 +1,11 @@
 # @swapnil-srivastava/ui
 
+## 0.3.0
+
+### Minor Changes
+
+- 3bfa3f4: making the package public
+
 ## 0.2.0
 
 ### Minor Changes
