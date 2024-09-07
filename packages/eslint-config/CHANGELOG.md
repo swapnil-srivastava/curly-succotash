@@ -1,4 +1,4 @@
-# @swapnil-srivastava/eslint-config
+# @swapnil-srivastava-sap/eslint-config
 
 ## 0.2.0
 
