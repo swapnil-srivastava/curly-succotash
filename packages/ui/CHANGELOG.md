@@ -1,5 +1,11 @@
 # @swapnil-srivastava/ui
 
+## 0.2.0
+
+### Minor Changes
+
+- f95f634: adding the eslint-package to the list to see if if publish with pull request
+
 ## 0.1.0
 
 ### Minor Changes
