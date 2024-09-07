@@ -1,5 +1,11 @@
 # @swapnil-srivastava/ui
 
+## 0.3.1
+
+### Patch Changes
+
+- f4912ae: make the private key in package.json to be false
+
 ## 0.3.0
 
 ### Minor Changes
