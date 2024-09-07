@@ -12,7 +12,7 @@ export async function callHerokuHelloWorld(appName: string) {
       }
     );
 
-    toast.success(`Called the Hello World Heroku API : ${data} ${appName}`);
+    toast.success(`Called the Hello World Heroku API : ${data} status : ${status} - appName :  ${appName}`);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log("error message: ", error.message);
