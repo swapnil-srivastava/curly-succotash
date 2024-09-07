@@ -109,3 +109,9 @@ npx run changeset
 3. Pull request is created by pipleine because github action is allowed to create and write to the repo.
 4. Merge the pull request. 
 5. The pipline will run again and it would publish this time.
+
+
+## Deployed Version 
+
+Docs App - https://curly-succotash-docs.vercel.app/
+Web App - https://curly-succotash-web.vercel.app/ 
