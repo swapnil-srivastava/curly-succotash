@@ -1,5 +1,11 @@
 # @swapnil-srivastava/typescript-config
 
+## 0.3.0
+
+### Minor Changes
+
+- 90f20ae: changing the version of all the packages
+
 ## 0.2.0
 
 ### Minor Changes
