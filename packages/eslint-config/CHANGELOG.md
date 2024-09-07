@@ -1,5 +1,11 @@
 # @swapnil-srivastava-sap/eslint-config
 
+## 0.3.0
+
+### Minor Changes
+
+- fdbdf22: changing the package name
+
 ## 0.2.0
 
 ### Minor Changes
