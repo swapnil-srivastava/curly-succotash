@@ -78,3 +78,26 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+
+## Changing version of the packages 
+
+Changing the version of the packages follow the steps mentioned below 
+
+
+1. Activate the Github Action to write and read from within the pipline and create pull request. 
+    Choose whether GitHub Actions can create pull requests or submit approving pull request reviews.
+        Allow GitHub Actions to create and approve pull requests
+
+2. add NPM_TOKEN in secrets in the repo level
+
+
+# increment the package 
+
+```
+npx run changeset 
+```
+
+1. Once the above command is run then commi the file (.md) in the .changeset folder 
+2. Commit the file 
+3. Pull request is created by pipleine because github action is allowed to create and write to the repo 
