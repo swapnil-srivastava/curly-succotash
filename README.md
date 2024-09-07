@@ -90,7 +90,10 @@ Changing the version of the packages follow the steps mentioned below
         Allow GitHub Actions to create and approve pull requests
 
 2. add NPM_TOKEN in secrets in the repo level
-3. Making each package public access 
+3. Making each package public access in package.json
+      "publishConfig": {
+    "access": "public"
+   }
 4.  "private": false in package.json should be false
 
 
