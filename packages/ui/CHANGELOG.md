@@ -1,5 +1,11 @@
 # @swapnil-srivastava/ui
 
+## 0.5.0
+
+### Minor Changes
+
+- 90f20ae: changing the version of all the packages
+
 ## 0.4.0
 
 ### Minor Changes
