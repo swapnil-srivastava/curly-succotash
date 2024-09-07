@@ -1,5 +1,11 @@
 # @swapnilsap/eslint-config
 
+## 0.4.0
+
+### Minor Changes
+
+- bee54e0: modified the package name
+
 ## 0.3.0
 
 ### Minor Changes
