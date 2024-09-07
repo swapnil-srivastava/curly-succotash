@@ -1,5 +1,11 @@
 # @swapnil-srivastava/ui
 
+## 0.5.1
+
+### Patch Changes
+
+- 53587d4: Adding the axios library in the ui and service to call the library as well.
+
 ## 0.5.0
 
 ### Minor Changes
