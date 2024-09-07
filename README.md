@@ -90,6 +90,8 @@ Changing the version of the packages follow the steps mentioned below
         Allow GitHub Actions to create and approve pull requests
 
 2. add NPM_TOKEN in secrets in the repo level
+3. Making each package public access 
+4.  "private": false in package.json should be false
 
 
 # increment the package 
@@ -98,6 +100,8 @@ Changing the version of the packages follow the steps mentioned below
 npx run changeset 
 ```
 
-1. Once the above command is run then commi the file (.md) in the .changeset folder 
-2. Commit the file 
-3. Pull request is created by pipleine because github action is allowed to create and write to the repo 
+1. Once the above command is run then commi the file (.md) in the .changeset folder.
+2. Commit the file. 
+3. Pull request is created by pipleine because github action is allowed to create and write to the repo.
+4. Merge the pull request. 
+5. The pipline will run again and it would publish this time.
