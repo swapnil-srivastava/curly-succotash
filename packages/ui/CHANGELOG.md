@@ -1,5 +1,11 @@
 # @swapnil-srivastava/ui
 
+## 0.6.0
+
+### Minor Changes
+
+- 384de4a: Removing the forward slash in the url constant
+
 ## 0.5.1
 
 ### Patch Changes
