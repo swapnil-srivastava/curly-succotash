@@ -1,5 +1,11 @@
 # @swapnil-srivastava/ui
 
+## 0.3.2
+
+### Patch Changes
+
+- e56c8dd: configuring the changeset value as well
+
 ## 0.3.1
 
 ### Patch Changes
