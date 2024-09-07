@@ -1,5 +1,11 @@
 # @swapnil-srivastava/ui
 
+## 0.6.1
+
+### Patch Changes
+
+- 42ea652: removing toast and adding console.log
+
 ## 0.6.0
 
 ### Minor Changes
