@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { BACKEND_URL } from "../library/library";
 
-export async function callHerokuHelloWorld() {
+export async function callHerokuHelloWorld(appName: string) {
   try {
     const { data, status } = await axios.get(`${BACKEND_URL}/helloWorldModels`,
       {
@@ -12,7 +12,7 @@ export async function callHerokuHelloWorld() {
       }
     );
 
-    toast.success(`Called the Hello World Heroku API : ${data}`);
+    toast.success(`Called the Hello World Heroku API : ${data} ${appName}`);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log("error message: ", error.message);
