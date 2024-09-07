@@ -12,7 +12,7 @@
     "generate:component": "turbo gen react-component"
   },
   "devDependencies": {
-    "@swapnil-srivastava-sap/eslint-config": "*",
+    "@swapnilsap/eslint-config": "*",
     "@swapnil-srivastava/typescript-config": "*",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",

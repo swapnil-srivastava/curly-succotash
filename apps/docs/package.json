@@ -15,7 +15,7 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@swapnil-srivastava-sap/eslint-config": "*",
+    "@swapnilsap/eslint-config": "*",
     "@swapnil-srivastava/typescript-config": "*",
     "@types/node": "^20",
     "@types/react": "^18",
