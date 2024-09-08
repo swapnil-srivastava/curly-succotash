@@ -81,7 +81,7 @@ const fetchChoicesForQuestion = async (questionId: number) => {
         }));
 
         toast.success("Choices Retrived!!");
-        return choices;
+        return processedChoices;
 
     } catch (error) {
     if (axios.isAxiosError(error)) {
