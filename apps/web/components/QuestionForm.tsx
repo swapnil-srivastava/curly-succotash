@@ -189,42 +189,48 @@ const QuestionForm: React.FC = () => {
 
   const handleSubmit = () => {
     const answers = Object.entries(formData)
-    .map(([key, value]) => {
-      const parts = key.split('_');
-      const questionIdString = parts[1];
-      const questionId = questionIdString ? parseInt(questionIdString, 10) : null;
-      
-      if (questionId === null || isNaN(questionId)) {
-        console.error(`Invalid question ID in key: ${key}`);
-        return null;
-      }
-
-      const choiceId = parseInt(value, 10);
-      if (isNaN(choiceId)) {
-        console.error(`Invalid choice ID for question ${questionId}: ${value}`);
-        return null;
-      }
-
-      return { questionId, choiceId };
-    })
-    .filter((answer): answer is { questionId: number; choiceId: number } => answer !== null);
-
-  console.log('Submitted answers:', answers);
-  // Here you would typically send the answers to your API
-
+      .map(([key, value]) => {
+        const parts = key.split('_');
+        const questionIdString = parts[1];
+        const questionId = questionIdString ? parseInt(questionIdString, 10) : null;
+        
+        if (questionId === null || isNaN(questionId)) {
+          console.error(`Invalid question ID in key: ${key}`);
+          return null;
+        }
+  
+        const choiceId = value ? parseInt(value, 10) : null;
+        if (choiceId === null || isNaN(choiceId)) {
+          console.error(`Invalid choice ID for question ${questionId}: ${value}`);
+          return null;
+        }
+  
+        return { questionId, choiceId };
+      })
+      .filter((answer): answer is { questionId: number; choiceId: number } => answer !== null);
+  
+    console.log('Submitted answers:', answers);
+    // Here you would typically send the answers to your API
   };
+  
 
   return (
     <div>
-      <JsonForms
-        schema={schema}
-        uischema={uiSchema}
-        data={formData}
-        renderers={materialRenderers}
-        cells={materialCells}
-        onChange={handleChange}
-      />
-      <button onClick={handleSubmit}>Submit</button>
+    {questions.length > 0 ? (
+      <>
+        <JsonForms
+          schema={schema}
+          uischema={uiSchema}
+          data={formData}
+          renderers={materialRenderers}
+          cells={materialCells}
+          onChange={handleChange}
+        />
+        <button onClick={handleSubmit}>Submit</button>
+      </>
+    ) : (
+      <p>Loading questions...</p>
+    )}
     </div>
   );
 };
