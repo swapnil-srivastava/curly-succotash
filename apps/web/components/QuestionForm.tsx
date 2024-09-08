@@ -192,12 +192,25 @@ const QuestionForm: React.FC = () => {
     properties: questions.reduce((acc, question) => {
       acc[`question_${question.id}`] = {
         type: 'string',
-        enum: question.choices.map(choice => (choice.id != null ? choice.id.toString() : 'undefined')),
-        enumNames: question.choices.map(choice => choice.choiceText || 'No Text')
+        enum: question.choices.map(choice => choice.choiceText),
+        enumNames: question.choices.map(choice => choice.choiceText)
       };
       return acc;
     }, {} as { [key: string]: any })
   };
+
+  // Workng with ID
+  // const schema = {
+  //   type: 'object',
+  //   properties: questions.reduce((acc, question) => {
+  //     acc[`question_${question.id}`] = {
+  //       type: 'string',
+  //       enum: question.choices.map(choice => (choice.id != null ? choice.id.toString() : 'undefined')),
+  //       enumNames: question.choices.map(choice => choice.choiceText || 'No Text')
+  //     };
+  //     return acc;
+  //   }, {} as { [key: string]: any })
+  // };
 
   const uiSchema = {
     type: 'VerticalLayout',
@@ -209,7 +222,7 @@ const QuestionForm: React.FC = () => {
         format: 'radio'
       }
     }))
-  };
+  };  
 
   const handleChange = ({ data }: { data: any }) => {
     setFormData(data);
