@@ -79,13 +79,24 @@ const QuestionForm: React.FC = () => {
       const questionsWithChoices = await Promise.all(
         questionsData.map(async (question: any) => {
           console.log("questionsData  inside map ::::", question);
-          const { _links } = question;
-          const { self } = _links;
-          const { href } = self;
+          const { _links, questionText } = question;
+          console.log("questionText  inside map ::::", questionText);
+          console.log("_links inside map ::::", _links);
+          const { choices: choicesLink , self: selfChoices, question: questionLinks } = _links;
+          console.log("choicesLink  inside map ::::", choicesLink);
+          console.log("selfChoices inside map ::::", selfChoices);
+          console.log("questionLinks inside map ::::", questionLinks);
+          const { href } = selfChoices;
+
           // Extract the ID from the selfHref
-          const id = parseInt(href.split('/').pop() || '0', 10);
+          const id = href ?? parseInt(href.split('/').pop() || '0', 10);
 
           const choices = await fetchChoicesForQuestion(id);
+
+          console.log("choices inside map::::", choices);
+
+          console.log("final json question with choices", { ...question, choices })
+  
           return { ...question, choices };
         })
       );
