@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CssBaseline } from '@mui/material';
 import localFont from "next/font/local";
 import { ThemeProvider } from "../components/ThemeProvider";
 
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <CssBaseline />
           {children}
         </ThemeProvider>
       </body>
