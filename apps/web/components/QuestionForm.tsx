@@ -20,7 +20,9 @@ const fetchQuestions = async () => {
         
         const { _embedded } = data;
         const { questions } = _embedded;
-        console.log("fetchQuestions:::: questions", questions)
+        const { questionText } = questions;
+        console.log("fetchQuestions:::: questions", questionText);
+        console.log("fetchQuestions:::: questionText", questionText);
 
         toast.success("Questions Retrived!!");
         return questions;
@@ -79,14 +81,17 @@ const QuestionForm: React.FC = () => {
       const questionsWithChoices = await Promise.all(
         questionsData.map(async (question: any) => {
           console.log("questionsData  inside map ::::", question);
+          console.log(":::::::::::::", question);
           const { _links, questionText } = question;
           console.log("questionText  inside map ::::", questionText);
           console.log("_links inside map ::::", _links);
+          console.log(":::::::::::::", question);
           const { choices: choicesLink , self: selfChoices, question: questionLinks } = _links;
           console.log("choicesLink  inside map ::::", choicesLink);
           console.log("selfChoices inside map ::::", selfChoices);
           console.log("questionLinks inside map ::::", questionLinks);
           const { href } = selfChoices;
+          console.log("href inside map ::::", href);
 
           // Extract the ID from the selfHref
           const id = href ?? parseInt(href.split('/').pop() || '0', 10);
