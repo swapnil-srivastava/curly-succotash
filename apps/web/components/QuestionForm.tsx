@@ -262,22 +262,33 @@ const QuestionForm: React.FC = () => {
   };
 
   return (
-    <div>
-    {questions.length > 0 ? (
-      <>
-        <JsonForms
-          schema={schema}
-          uischema={uiSchema}
-          data={formData}
-          renderers={materialRenderers}
-          cells={materialCells}
-          onChange={handleChange}
-        />
-        <button onClick={handleSubmit}>Submit</button>
-      </>
-    ) : (
-      <p>Loading questions...</p>
-    )}
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h2 className="text-2xl font-bold mb-6 text-gray-800">Questionnaire</h2>
+        {questions.length > 0 ? (
+          <>
+            <div className="space-y-6">
+              <JsonForms
+                schema={schema}
+                uischema={uiSchema}
+                data={formData}
+                renderers={materialRenderers}
+                cells={materialCells}
+                onChange={handleChange}
+              />
+            </div>
+            <button 
+              onClick={handleSubmit}
+              className="mt-8 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out"
+            >
+              Submit
+            </button>
+          </>
+        ) : (
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            <p className="ml-3 text-lg text-gray-600">Loading questions...</p>
+          </div>
+        )}
     </div>
   );
 };
