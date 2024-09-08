@@ -17,11 +17,6 @@ export default function Home() {
             <ThemeToggle />
           </div>
         </div>
-        <p className="mt-4 text-secondary-light dark:text-secondary-dark">
-          <Button appName="web" className={styles.secondary}>
-            Call Hello World Heroku API   
-          </Button>
-        </p>
         <div>
           <QuestionForm />
         </div>
