@@ -8,15 +8,7 @@ import axios from 'axios';
 
 import { BACKEND_URL, Question } from "../config/library";
 
-const QuestionForm: React.FC = () => {
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [formData, setFormData] = useState<{ [key: string]: string }>({});
-
-  useEffect(() => {
-    fetchQuestionsAndChoices();
-  }, []);
-
-  const fetchQuestions = async () => {
+const fetchQuestions = async () => {
     try {
         const { data, status } = await axios.get(`${BACKEND_URL}/questions`,
           {
@@ -26,8 +18,11 @@ const QuestionForm: React.FC = () => {
           }
         );
         
+        const { _embedded } = data;
+        const { questions } = _embedded;
+        console.log("fetchQuestions:::: questions", questions)
         toast.success("Questions Retrived!!");
-        return data;
+        return questions;
 
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -38,32 +33,43 @@ const QuestionForm: React.FC = () => {
           return "An unexpected error occurred";
         }
       }
-  };
+};
   
-  const fetchChoicesForQuestion = async (questionId: number) => {
+const fetchChoicesForQuestion = async (questionId: number) => {
     try {
         const { data, status } = await axios.get(`${BACKEND_URL}/questions/${questionId}/choices`,
-          {
+            {
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
-          }
+            }
         );
         
+        const { _embedded } = data;
+        const { choices } = _embedded;
+
         toast.success("Choices Retrived!!");
-        return data;
+        return choices;
 
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          toast.error(`"error message: ", ${error.message}`);
-          return error.message;
-        } else {
-          toast.error(`"unexpected error: ", ${error}`);
-          return "An unexpected error occurred";
-        }
-      }
-  };
+    } catch (error) {
+    if (axios.isAxiosError(error)) {
+        toast.error(`"error message: ", ${error.message}`);
+        return error.message;
+    } else {
+        toast.error(`"unexpected error: ", ${error}`);
+        return "An unexpected error occurred";
+    }
+    }
+};
 
+
+const QuestionForm: React.FC = () => {
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [formData, setFormData] = useState<{ [key: string]: string }>({});
+
+  useEffect(() => {
+    fetchQuestionsAndChoices();
+  }, []);
   const fetchQuestionsAndChoices = async () => {
     try {
       const questionsData = await fetchQuestions();
