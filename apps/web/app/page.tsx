@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { Button } from "@swapnil-srivastava/ui/button";
 import styles from "./page.module.css";
 import { ThemeToggle } from "../components/ThemeToggle";
+import QuestionForm from "../components/QuestionForm";
 
 export default function Home() {
   return (
@@ -22,6 +22,10 @@ export default function Home() {
             Call Hello World Heroku API   
           </Button>
         </p>
+        <div>
+          <h1>Question Form</h1>
+          <QuestionForm />
+        </div>
       </div>
     </main>
   );
