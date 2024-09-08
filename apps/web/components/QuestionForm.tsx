@@ -39,6 +39,30 @@ const fetchQuestions = async () => {
 };
   
 const fetchChoicesForQuestion = async (questionId: number) => {
+  function extractChoiceIdFromUrl(url: string): number {
+    if (!url) {
+      throw new Error('URL is undefined');
+    }
+  
+    // Split the URL by '/' and get the last part
+    const parts = url.split('/');
+    const lastPart = parts[parts.length - 1];
+    
+    // Check if lastPart exists
+    if (!lastPart) {
+      throw new Error('Invalid URL format: No ID found');
+    }
+  
+    // Parse the last part as an integer
+    const id = parseInt(lastPart, 10);
+    
+    // Check if the parsed value is a valid number
+    if (isNaN(id)) {
+      throw new Error('Invalid URL format: Unable to extract ID');
+    }
+    
+    return id;
+  }
     try {
         const { data, status } = await axios.get(`${BACKEND_URL}/questions/${questionId}/choices`,
             {
@@ -50,6 +74,11 @@ const fetchChoicesForQuestion = async (questionId: number) => {
         
         const { _embedded } = data;
         const { choices } = _embedded;
+
+        const processedChoices = choices.map((choice: any) => ({
+            id: extractChoiceIdFromUrl(choice._links.self.href),
+            choiceText: choice.choiceText
+        }));
 
         toast.success("Choices Retrived!!");
         return choices;
@@ -125,6 +154,8 @@ const QuestionForm: React.FC = () => {
           console.log("id inside map ::::", id);
   
           const choices = await fetchChoicesForQuestion(id);
+
+          console.log("choices inside map::::", choices);
   
           // Add error checking for choices
           if (!Array.isArray(choices)) {
@@ -136,10 +167,7 @@ const QuestionForm: React.FC = () => {
           const questionWithChoices = {
             id,
             questionText,
-            choices: choices.map(choice => ({
-              id: choice.id != null ? choice.id : 'undefined',
-              choiceText: choice.choiceText || 'No Text'
-            }))
+            choices
           };
   
           console.log("final json question with choices :::: questionWithChoices", questionWithChoices);
