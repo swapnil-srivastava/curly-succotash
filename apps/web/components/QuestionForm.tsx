@@ -127,9 +127,18 @@ const QuestionForm: React.FC = () => {
 
           console.log("choices inside map::::", choices);
 
+          console.log("asdasd", { ...question, choices });
+
+          // Create a new object with the desired properties, excluding _links
+          const questionWithChoices = {
+            id,
+            questionText,
+            choices
+          };
+
           console.log("final json question with choices", { ...question, choices })
   
-          return { ...question, choices };
+          return questionWithChoices;
         })
       );
       setQuestions(questionsWithChoices);
