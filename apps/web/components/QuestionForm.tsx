@@ -189,8 +189,8 @@ const QuestionForm: React.FC = () => {
     properties: questions.reduce((acc, question) => {
       acc[`question_${question.id}`] = {
         type: 'string',
-        enum: question.choices.map(choice => choice.id.toString()),
-        enumNames: question.choices.map(choice => choice.choiceText)
+        enum: question.choices.map(choice => choice.choiceText),
+        enumNames: question.choices.map(choice => choice.id.toString())
       };
       return acc;
     }, {} as { [key: string]: any })
