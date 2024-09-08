@@ -74,8 +74,14 @@ const QuestionForm: React.FC = () => {
     try {
       const questionsData = await fetchQuestions();
       const questionsWithChoices = await Promise.all(
-        questionsData.map(async (question: Question) => {
-          const choices = await fetchChoicesForQuestion(question.id);
+        questionsData.map(async (question: any) => {
+          const { _links } = question;
+          const { self } = _links;
+          const { href } = self;
+          // Extract the ID from the selfHref
+          const id = parseInt(href.split('/').pop() || '0', 10);
+
+          const choices = await fetchChoicesForQuestion(id);
           return { ...question, choices };
         })
       );
