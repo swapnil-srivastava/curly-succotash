@@ -234,8 +234,6 @@ const QuestionForm: React.FC = () => {
       }
     }))
   };
-  
-
 
   const handleChange = ({ data }: { data: any }) => {
     setFormData(data);
@@ -274,7 +272,7 @@ const QuestionForm: React.FC = () => {
         console.error(`Invalid key format: ${key}`);
         return null;
       }
-      
+  
       const questionIdString = parts[1];
       if (questionIdString === undefined) {
         console.error(`Question ID is undefined for key: ${key}`);
@@ -282,29 +280,30 @@ const QuestionForm: React.FC = () => {
       }
   
       const questionId = parseInt(questionIdString, 10);
-      
       if (isNaN(questionId)) {
         console.error(`Unable to parse question ID: ${questionIdString}`);
         return null;
       }
   
-      if (typeof value !== 'string') {
-        console.error(`Invalid value type for key ${key}: ${typeof value}`);
+      const question = questions.find(q => q.id === questionId);
+      if (!question) {
+        console.error(`Question not found for ID: ${questionId}`);
         return null;
       }
   
-      try {
-        const { id: choiceId, text: choiceText } = JSON.parse(value);
-        return { questionId, choiceId, choiceText };
-      } catch (error) {
-        console.error(`Error parsing choice value: ${value}`, error);
+      const choice = question.choices.find(c => c.id.toString() === value);
+      if (!choice) {
+        console.error(`Choice not found for question ${questionId}: ${value}`);
         return null;
       }
+  
+      return { questionId, choiceId: choice.id, choiceText: choice.choiceText };
     }).filter((answer): answer is { questionId: number; choiceId: number; choiceText: string } => answer !== null);
   
     console.log('Submitted answers:', answers);
     // Here you would typically send the answers to your API
-  };  
+  };
+  
 
   return (
     <div>
