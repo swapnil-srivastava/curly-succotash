@@ -94,7 +94,6 @@ const fetchChoicesForQuestion = async (questionId: number) => {
     }
 };
 
-
 const QuestionForm: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
@@ -123,7 +122,6 @@ const QuestionForm: React.FC = () => {
     
     return id;
   }
-
 
   useEffect(() => {
     fetchQuestionsAndChoices();
@@ -232,10 +230,12 @@ const QuestionForm: React.FC = () => {
       scope: `#/properties/question_${question.id}`,
       label: question.questionText,
       options: {
-        format: 'radio'
+        format: 'radio',
+        labelFormat: 'text'
       }
     }))
-  };  
+  };
+
 
   const handleChange = ({ data }: { data: any }) => {
     setFormData(data);
@@ -304,9 +304,7 @@ const QuestionForm: React.FC = () => {
   
     console.log('Submitted answers:', answers);
     // Here you would typically send the answers to your API
-  };
-  
-  
+  };  
 
   return (
     <div>
