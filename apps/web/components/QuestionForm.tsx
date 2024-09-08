@@ -189,7 +189,7 @@ const QuestionForm: React.FC = () => {
     properties: questions.reduce((acc, question) => {
       acc[`question_${question.id}`] = {
         type: 'string',
-        enum: question.choices.map(choice => JSON.stringify({ id: choice.id, text: choice.choiceText })),
+        enum: question.choices.map(choice => choice.id.toString()),
         enumNames: question.choices.map(choice => choice.choiceText)
       };
       return acc;
@@ -230,11 +230,11 @@ const QuestionForm: React.FC = () => {
       scope: `#/properties/question_${question.id}`,
       label: question.questionText,
       options: {
-        format: 'radio',
-        labelFormat: 'text'
+        format: 'radio'
       }
     }))
   };
+  
 
 
   const handleChange = ({ data }: { data: any }) => {
