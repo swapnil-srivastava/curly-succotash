@@ -202,32 +202,6 @@ const QuestionForm: React.FC = () => {
     }, {} as { [key: string]: any })
   };
 
-  // Working with choicetext
-  // const schema = {
-  //   type: 'object',
-  //   properties: questions.reduce((acc, question) => {
-  //     acc[`question_${question.id}`] = {
-  //       type: 'string',
-  //       enum: question.choices.map(choice => choice.choiceText),
-  //       enumNames: question.choices.map(choice => choice.choiceText)
-  //     };
-  //     return acc;
-  //   }, {} as { [key: string]: any })
-  // };
-
-  // Workng with ID
-  // const schema = {
-  //   type: 'object',
-  //   properties: questions.reduce((acc, question) => {
-  //     acc[`question_${question.id}`] = {
-  //       type: 'string',
-  //       enum: question.choices.map(choice => (choice.id != null ? choice.id.toString() : 'undefined')),
-  //       enumNames: question.choices.map(choice => choice.choiceText || 'No Text')
-  //     };
-  //     return acc;
-  //   }, {} as { [key: string]: any })
-  // };
-
   const uiSchema = {
     type: 'VerticalLayout',
     elements: questions.map(question => ({
@@ -239,38 +213,11 @@ const QuestionForm: React.FC = () => {
       }
     }))
   };
-  
 
   const handleChange = ({ data }: { data: any }) => {
     setFormData(data);
   };
 
-  // const handleSubmit = () => {
-  //   const answers = Object.entries(formData)
-  //     .map(([key, value]) => {
-  //       const parts = key.split('_');
-  //       const questionIdString = parts[1];
-  //       const questionId = questionIdString ? parseInt(questionIdString, 10) : null;
-        
-  //       if (questionId === null || isNaN(questionId)) {
-  //         console.error(`Invalid question ID in key: ${key}`);
-  //         return null;
-  //       }
-  
-  //       const choiceId = value ? parseInt(value, 10) : null;
-  //       if (choiceId === null || isNaN(choiceId)) {
-  //         console.error(`Invalid choice ID for question ${questionId}: ${value}`);
-  //         return null;
-  //       }
-  
-  //       return { questionId, choiceId };
-  //     })
-  //     .filter((answer): answer is { questionId: number; choiceId: number } => answer !== null);
-  
-  //   console.log('Submitted answers:', answers);
-  //   // Here you would typically send the answers to your API
-  // };
-  
   const handleSubmit = () => {
     const answers = Object.entries(formData).map(([key, value]) => {
       const parts = key.split('_');
