@@ -99,11 +99,12 @@ const QuestionForm: React.FC = () => {
   useEffect(() => {
     fetchQuestionsAndChoices();
   }, []);
+
   const fetchQuestionsAndChoices = async () => {
     try {
       const questionsData = await fetchQuestions();
       console.log("questionsData ::::",questionsData);
-
+  
       const questionsWithChoices = await Promise.all(
         questionsData.map(async (question: any) => {
           console.log("questionsData  inside map ::::", question);
@@ -122,38 +123,49 @@ const QuestionForm: React.FC = () => {
           // Extract the ID from the selfHref
           const id = extractIdFromUrl(href);
           console.log("id inside map ::::", id);
-
+  
           const choices = await fetchChoicesForQuestion(id);
-
-          console.log("choices inside map::::", choices);
-
-          console.log("asdasd", { ...question, choices });
-
+  
+          // Add error checking for choices
+          if (!Array.isArray(choices)) {
+            console.error(`Choices for question ${id} is not an array:`, choices);
+            return null; // or handle this case as appropriate
+          }
+  
           // Create a new object with the desired properties, excluding _links
           const questionWithChoices = {
             id,
             questionText,
-            choices
+            choices: choices.map(choice => ({
+              id: choice.id != null ? choice.id : 'undefined',
+              choiceText: choice.choiceText || 'No Text'
+            }))
           };
-
+  
           console.log("final json question with choices :::: questionWithChoices", questionWithChoices);
   
           return questionWithChoices;
         })
       );
-      setQuestions(questionsWithChoices);
+  
+      // Filter out any null values (questions that failed to fetch)
+      const validQuestions = questionsWithChoices.filter(q => q !== null);
+  
+      setQuestions(validQuestions);
+  
     } catch (error) {
       console.error('Error fetching questions and choices:', error);
     }
   };
+  
 
   const schema = {
     type: 'object',
     properties: questions.reduce((acc, question) => {
       acc[`question_${question.id}`] = {
         type: 'string',
-        enum: question.choices.map(choice => choice.id.toString()),
-        enumNames: question.choices.map(choice => choice.choiceText)
+        enum: question.choices.map(choice => (choice.id != null ? choice.id.toString() : 'undefined')),
+        enumNames: question.choices.map(choice => choice.choiceText || 'No Text')
       };
       return acc;
     }, {} as { [key: string]: any })
