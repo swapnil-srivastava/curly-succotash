@@ -70,6 +70,32 @@ const QuestionForm: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
 
+  function extractIdFromUrl(url: string): number {
+    if (!url) {
+      throw new Error('URL is undefined');
+    }
+  
+    // Split the URL by '/' and get the last part
+    const parts = url.split('/');
+    const lastPart = parts[parts.length - 1];
+    
+    // Check if lastPart exists
+    if (!lastPart) {
+      throw new Error('Invalid URL format: No ID found');
+    }
+  
+    // Parse the last part as an integer
+    const id = parseInt(lastPart, 10);
+    
+    // Check if the parsed value is a valid number
+    if (isNaN(id)) {
+      throw new Error('Invalid URL format: Unable to extract ID');
+    }
+    
+    return id;
+  }
+
+
   useEffect(() => {
     fetchQuestionsAndChoices();
   }, []);
@@ -94,7 +120,8 @@ const QuestionForm: React.FC = () => {
           console.log("href inside map ::::", href);
 
           // Extract the ID from the selfHref
-          const id = href ?? parseInt(href.split('/').pop() || '0', 10);
+          const id = extractIdFromUrl(href);
+          console.log("id inside map ::::", id);
 
           const choices = await fetchChoicesForQuestion(id);
 
