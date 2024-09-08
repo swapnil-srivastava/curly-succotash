@@ -1,9 +1,6 @@
 import Image from "next/image";
 import { Button } from "@swapnil-srivastava/ui/button";
 import styles from "./page.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackward} from "@fortawesome/free-solid-svg-icons";
-
 
 export default function Home() {
   return (
@@ -54,7 +51,6 @@ export default function Home() {
         <Button appName="web" className={styles.secondary}>
           Call Hello World Heroku API   
         </Button>
-        <FontAwesomeIcon icon={faBackward} size="sm"/>
       </main>
       <footer className={styles.footer}>
         <a
