@@ -52,8 +52,9 @@ export default function Home() {
 
         {/* Calling the Heroku API */}
         <Button appName="web" className={styles.secondary}>
-          Call Hello World Heroku API   <FontAwesomeIcon icon={faBackward} size="sm"/>
+          Call Hello World Heroku API   
         </Button>
+        <FontAwesomeIcon icon={faBackward} size="sm"/>
       </main>
       <footer className={styles.footer}>
         <a
