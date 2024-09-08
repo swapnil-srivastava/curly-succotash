@@ -23,7 +23,6 @@ export default function Home() {
           </Button>
         </p>
         <div>
-          <h1>Question Form</h1>
           <QuestionForm />
         </div>
       </div>
