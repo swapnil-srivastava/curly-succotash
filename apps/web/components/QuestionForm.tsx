@@ -21,6 +21,7 @@ const fetchQuestions = async () => {
         const { _embedded } = data;
         const { questions } = _embedded;
         console.log("fetchQuestions:::: questions", questions)
+
         toast.success("Questions Retrived!!");
         return questions;
 
@@ -73,8 +74,11 @@ const QuestionForm: React.FC = () => {
   const fetchQuestionsAndChoices = async () => {
     try {
       const questionsData = await fetchQuestions();
+      console.log("questionsData ::::",questionsData);
+
       const questionsWithChoices = await Promise.all(
         questionsData.map(async (question: any) => {
+          console.log("questionsData  inside map ::::", question);
           const { _links } = question;
           const { self } = _links;
           const { href } = self;
