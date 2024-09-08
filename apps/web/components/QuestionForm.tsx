@@ -136,7 +136,7 @@ const QuestionForm: React.FC = () => {
             choices
           };
 
-          console.log("final json question with choices", { ...question, choices })
+          console.log("final json question with choices :::: questionWithChoices", questionWithChoices);
   
           return questionWithChoices;
         })
